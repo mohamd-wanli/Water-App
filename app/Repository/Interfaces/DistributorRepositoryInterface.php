@@ -8,5 +8,6 @@ interface DistributorRepositoryInterface
     public function update(int $id,array $data);
     public function delete(int $id);
     public function find($id);
+    public function findDistributorByEmail(string $email);
 
 }

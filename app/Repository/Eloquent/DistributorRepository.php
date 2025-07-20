@@ -34,4 +34,8 @@ class DistributorRepository implements DistributorRepositoryInterface
     {
         return Distributor::findorFail($id);
     }
-}
+
+public function findDistributorByEmail(string $email)
+{
+    return $this->model->where('email',$email)->first();
+}}

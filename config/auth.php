@@ -43,8 +43,19 @@ return [
         'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
+
+        ],
+        'distributor' => [
+            'driver' => 'session', // Use 'session' for web-based login, 'token' or 'jwt' for API
+            'provider' => 'distributors', // Points to the 'distributors' provider
+        ],
+        // If you use JWT for API, you might need another guard specifically for distributor API
+        'distributor_api' => [
+            'driver' => 'jwt', // Assuming you have a JWT driver configured
+            'provider' => 'distributors',
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -67,6 +78,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+        'distributors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Distributor::class, // Your Distributor model
         ],
 
         // 'users' => [

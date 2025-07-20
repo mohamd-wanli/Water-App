@@ -9,10 +9,10 @@ use \App\Http\Controllers\ProductController;
 Route::post('/register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 Route::post('logout',[AuthController::class,'logout']);
-
+Route::post('profile',[DistributorController::class,'register']);
 
 Route::prefix('distributor')->middleware(['auth:api','role:distributor'])->group(function (){
-    Route::post('profile',[DistributorController::class,'register']);
+
     Route::post('update/{id}',[DistributorController::class,'update']);
     Route::post('delete/{id}',[DistributorController::class,'delete']);
 });

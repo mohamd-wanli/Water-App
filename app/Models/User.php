@@ -25,7 +25,7 @@ class User extends Authenticatable implements JWTSubject,MustVerifyEmail
         'password',
         'phone',
         'is_banned',
-        'role'
+
     ];
 
     /**
@@ -65,8 +65,8 @@ class User extends Authenticatable implements JWTSubject,MustVerifyEmail
     public function orders(){
         return $this->hasMany(Order::class);
     }
-    public function distributor(){
-        return $this->hasOne(Distributor::class);
+    public function distributors(){
+        return $this->hasMany(Distributor::class);
     }
     public function reports(){
         return $this->hasMany(Report::class);

@@ -15,10 +15,13 @@ class DistributorResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user_id'=>$this->user_id,
+
+
+            'name'=>$this->name,
+            'email'=>$this->email,
+//            'password'=>$this->password,
+            'phone'=>$this->phone,
             'commercial_license'=>$this->commercial_license,
-            'company_name'=>$this->company_name,
-            'location'=>$this->location
         ];
     }
 }

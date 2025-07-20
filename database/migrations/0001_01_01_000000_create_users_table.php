@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('phone');
+            $table->string('phone');
             $table->boolean('is_banned')->default(false);
-            $table->string('role')->default(\App\Types\UserTypes::USER);
             $table->timestamps();
         });
 

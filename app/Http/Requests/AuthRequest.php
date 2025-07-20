@@ -27,8 +27,8 @@ class AuthRequest extends FormRequest
             'name'=>'required|string',
             'email'=>'required|email',
             'password'=>'required|string|min:6',
-            'phone'=>'required|integer|min:10',
-            'role'=>['required',Rule::in(UserTypes::$statuses)]
+            'phone'=>'required|min:10',
+
         ];
     }
 }

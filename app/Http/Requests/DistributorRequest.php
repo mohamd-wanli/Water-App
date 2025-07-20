@@ -24,8 +24,11 @@ class DistributorRequest extends FormRequest
         return [
 //            'user_id'=>$this->user_id,
             'commercial_license'=>'required',
-            'company_name'=>'required',
-            'location'=>'required'
+            'name'=>'required|string',
+            'email'=>'required|email',
+            'password'=>'required|string|min:6',
+            'phone'=>'required|min:10',
+
         ];
     }
 }

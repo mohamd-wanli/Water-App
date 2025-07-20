@@ -2,20 +2,42 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Distributor extends Model
+class Distributor extends  Authenticatable implements JWTSubject
 {
+    use  HasFactory, Notifiable;
 
     protected $fillable = [
-    'user_id',
+    'name',
     'commercial_license',
-    'status',
-    'company_name',
-    'location',
+    'password',
+    'email',
+    'phone',
+
 ];
-    public function user(){
-        return $this->BelongsTo(User::class);
+       protected $hidden = [
+           'password',
+           'remember_token',
+       ];
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+    public function users(){
+        return $this->hasMany(User::class);
     }
     public function products(){
         return $this->hasMany(Product::class);
@@ -24,4 +46,13 @@ class Distributor extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function getJWTIdentifier()
+    {
+       return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
