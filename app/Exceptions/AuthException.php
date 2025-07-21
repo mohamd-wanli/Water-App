@@ -22,6 +22,9 @@ class AuthException extends Exception
     public static function accountNotActive() : self{
         return new self('this account is banned',401);
     }
+    public static function accountNotApproved() : self{
+        return new self('this account is not active',401);
+    }
     public function render($request){
         return ApiResponse::error($this->getMessage(), $this->getCode());
     }

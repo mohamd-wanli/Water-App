@@ -46,6 +46,10 @@ class AuthService
                 Auth::guard('distributor_api')->logout(); // Log out if banned
                 throw AuthException::accountNotActive();
             }
+//            // Add to login
+//            if ( ! $distributor->approved) {
+//                throw AuthException::accountNotApproved();
+//            }
             return $distributor;
         }
 

@@ -9,6 +9,7 @@ use App\Http\Resources\DistributorResource;
 use App\Models\Distributor;
 use App\Services\DistributorService;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class DistributorController extends Controller
 {
@@ -18,7 +19,8 @@ class DistributorController extends Controller
 
  public function register(DistributorRequest $request){
        $distributor=$this->service->create($request->validated());
-       $result=DistributorResource::make($distributor)->toArray($request);
+     $token = JWTAuth::fromUser($distributor);
+       $result=array_merge(['user:'=>DistributorResource::make($distributor)->toArray($request),'token :'=>$token]);
        return ApiResponse::success($result,'success',ApiCode::OK);
 
  }

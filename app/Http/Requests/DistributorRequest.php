@@ -22,7 +22,7 @@ class DistributorRequest extends FormRequest
     public function rules(): array
     {
         return [
-//            'user_id'=>$this->user_id,
+
             'commercial_license'=>'required',
             'name'=>'required|string',
             'email'=>'required|email',

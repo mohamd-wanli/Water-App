@@ -11,13 +11,13 @@ Route::post('login',[AuthController::class,'login']);
 Route::post('logout',[AuthController::class,'logout']);
 Route::post('profile',[DistributorController::class,'register']);
 
-Route::prefix('distributor')->middleware(['auth:api','role:distributor'])->group(function (){
+Route::prefix('distributor')->middleware(['auth:distributor_api','distributor'])->group(function (){
 
     Route::post('update/{id}',[DistributorController::class,'update']);
-    Route::post('delete/{id}',[DistributorController::class,'delete']);
+    Route::Delete('delete/{id}',[DistributorController::class,'delete']);
 });
 
-Route::prefix('admin')->middleware(['auth:api','role:admin'])->group(function (){
+Route::prefix('admin')->middleware(['auth:api','admin'])->group(function (){
     Route::post('approve/{id}',[AdminController::class,'approve']);
     Route::post('reject/{id}',[AdminController::class,'reject']);
     Route::get('pending',[AdminController::class,'getPending']);
