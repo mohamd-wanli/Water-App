@@ -23,7 +23,7 @@ Route::prefix('admin')->middleware(['auth:api','admin'])->group(function (){
     Route::get('pending',[AdminController::class,'getPending']);
 });
 
-Route::prefix('product')->middleware(['auth:api','role:distributor'])->group(function (){
+Route::prefix('product')->middleware(['auth:distributor_api','distributor'])->group(function (){
 Route::post('create',[ProductController::class,'create']);
 Route::post('update/{id}',[ProductController::class,'update']);
 Route::delete('delete/{id}',[ProductController::class,'delete']);
